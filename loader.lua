@@ -4,10 +4,19 @@ local StarterGui = game:GetService("StarterGui")
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local username = player.Name
 
-local URL = "https://arabic-loader.cadn-gta.workers.dev/?username=" .. username
+local URL = "https://arabic-loader.cadn-gta.workers.dev/"
 
 local success, source = pcall(function()
-    return game:HttpGet(URL)
+    return request({
+        Url = URL,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game:GetService("HttpService"):JSONEncode({
+            username = username
+        })
+    }).Body
 end)
 
 if not success then
@@ -23,6 +32,7 @@ if source == "WHITELIST_ERROR" then
             Duration = 6
         })
     end)
+
     return
 end
 
