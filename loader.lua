@@ -11,26 +11,17 @@ local success, source = pcall(function()
 end)
 
 if not success then
-    warn("Arabic Loader - ERRO:", source)
-
-    pcall(function()
-        StarterGui:SetCore("SendNotification", {
-            Title = "⚠️ Arabic Loader",
-            Text = "Erro HTTP. Veja o console.",
-            Duration = 6
-        })
-    end)
-
+    warn("Arabic Loader - ERRO HTTP:", source)
     return
 end
 
-print("Usuario:", username)
-print("Resposta:", source)
+print("Arabic Loader - Usuario:", username)
+print("Arabic Loader - Resposta recebida")
 
 if source == "WHITELIST_ERROR" then
     pcall(function()
         StarterGui:SetCore("SendNotification", {
-            Title = "🔒 Acesso Negado",
+            Title = "🔒 Arabic Loader",
             Text = "Você não está na whitelist!",
             Duration = 6
         })
@@ -42,8 +33,10 @@ end
 local func, err = loadstring(source)
 
 if not func then
-    warn("Arabic Loader - erro no script:", err)
+    warn("Arabic Loader - ERRO NO SCRIPT:", err)
     return
 end
+
+print("Arabic Loader - AUTORIZADO")
 
 func()
