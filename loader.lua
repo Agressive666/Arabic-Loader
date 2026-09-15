@@ -59,7 +59,7 @@ local function showAccessDenied()
     Title.Size = UDim2.new(1, -40, 0, 45)
     Title.Position = UDim2.new(0, 20, 0, 20)
     Title.BackgroundTransparency = 1
-    Title.Text = "🔒  ACESSO NEGADO"
+    Title.Text = "🔒 ACCESS DENIED"
     Title.TextColor3 = Color3.fromRGB(255, 70, 70)
     Title.TextSize = 25
     Title.Font = Enum.Font.GothamBold
@@ -80,7 +80,7 @@ local function showAccessDenied()
     Message.Size = UDim2.new(1, -50, 0, 60)
     Message.Position = UDim2.new(0, 25, 0, 85)
     Message.BackgroundTransparency = 1
-    Message.Text = "Você não está na whitelist!"
+    Message.Text = "Surprise, motherfucker. You're not on the list!"
     Message.TextColor3 = Color3.fromRGB(230, 230, 230)
     Message.TextSize = 18
     Message.Font = Enum.Font.Gotham
