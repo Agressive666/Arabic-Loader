@@ -15,6 +15,7 @@ if not success then
     return
 end
 
+-- Usuário não autorizado
 if source == "WHITELIST_ERROR" then
     pcall(function()
         StarterGui:SetCore("SendNotification", {
@@ -27,6 +28,7 @@ if source == "WHITELIST_ERROR" then
     return
 end
 
+-- Carrega o script autorizado
 local func, err = loadstring(source)
 
 if not func then
