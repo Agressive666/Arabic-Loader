@@ -1,27 +1,37 @@
 local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
 
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local username = player.Name
 
-print("Usuario detectado:", username)
-
 local URL = "https://arabic-loader.cadn-gta.workers.dev/?username=" .. username
 
-local success, response = pcall(function()
+local success, source = pcall(function()
     return game:HttpGet(URL)
 end)
 
-print("HTTP:", success)
-print("Resposta:", response)
-
 if not success then
-    warn("Erro:", response)
+    warn("Arabic Loader: erro ao conectar ao servidor.")
     return
 end
 
-if response == "WHITELIST_ERROR" then
-    print("NAO AUTORIZADO")
+if source == "WHITELIST_ERROR" then
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "🔒 Arabic Loader",
+            Text = "Você não está na whitelist!",
+            Duration = 6
+        })
+    end)
+
     return
 end
 
-print("AUTORIZADO")
+local func, err = loadstring(source)
+
+if not func then
+    warn("Arabic Loader: erro ao carregar o script:", err)
+    return
+end
+
+func()
